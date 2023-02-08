@@ -10,11 +10,16 @@ import { ajax } from 'rxjs/ajax';
 export class CatsComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getData();
+  }
 
   url: string = 'https://api.github.com/users';
 
-  getData(){
-    
+  getData() {
+    const httpRequestObservable = ajax.get(this.url);
+    const observableSub1 = httpRequestObservable.subscribe((userData) => {
+      console.log('ObservableSub1: ', userData.response);
+    });
   }
 }
